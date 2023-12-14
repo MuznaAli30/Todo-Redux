@@ -1,18 +1,31 @@
+// InputField.js
+
 import React, { useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { addTodo } from '../redux/TodoSlice';
+
 
 export default function InputField(props) {
+    // const dispatch = useDispatch();
     const inputBox = useRef();
 
     // Enter key function
     const handleKeyPress = (e) => {
         if (e.key === 'Enter' && inputBox.current.value.trim() !== '') {
+            // dispatch(
+            //     addTodo({
+            //         title: inputBox.current.value,
+            //     })
+            // )
             props.handler(inputBox.current.value);
             inputBox.current.value = ''; // Clear the input field after adding
+        
         }
     };
 
     // Add button function
     const handleAddClick = () => {
+        
         if (inputBox.current.value.trim() !== '') {
             props.handler(inputBox.current.value);
             inputBox.current.value = ''; // Clear the input field after adding
@@ -20,6 +33,8 @@ export default function InputField(props) {
     };
 
     return (
+        
+        
         <div className='p-3 flex justify-around w-full sm:text-2xl xl:text-3xl 2xl:text-4xl'>
             <input
                 type="text"
